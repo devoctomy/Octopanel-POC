@@ -1,15 +1,15 @@
 ﻿<reactiveui:ReactiveWindow xmlns="https://github.com/avaloniaui"
                            x:TypeArguments="vm:IMainWindowViewModel"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="clr-namespace:Octopanel_POC.ViewModels;assembly=Octopanel_POC"
+        xmlns:vm="clr-namespace:Octopanel_POC.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Octopanel_POC.Views.MainWindow"               
-        xmlns:reactiveui="clr-namespace:Avalonia.RecativeUI"
+        xmlns:reactiveui="clr-namespace:Avalonia.ReactiveUI"
         Icon="/Assets/avalonia-logo.ico"
         Title="Octopanel_POC">
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <TextBlock Text="{Binding Context}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
 </reactiveui:ReactiveWindow>

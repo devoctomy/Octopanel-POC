@@ -1,9 +1,11 @@
-﻿using ReactiveUI;
-
-namespace Octopanel_POC.ViewModels
+﻿namespace Octopanel_POC.ViewModels
 {
-    public class MainWindowViewModel : ReactiveObject, IMainWindowViewModel
+    public class MainWindowViewModel : ViewModelBase, IMainWindowViewModel
     {
-        public string Greeting => "Welcome to Avalonia!";
+        public MainWindowViewModel(object context) :
+            base(context)
+        {
+
+        }
     }
 }

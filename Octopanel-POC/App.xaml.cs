@@ -22,17 +22,14 @@ namespace Octopanel_POC
 
             Locator.CurrentMutable.RegisterConstant(new OctoprintClient(), typeof(IOctoprintClient));
 
-            Locator.CurrentMutable.Register(() => new MainWindowViewModel(), typeof(IMainWindowViewModel));
+            Locator.CurrentMutable.Register(() => new MainWindowViewModel("Hello World!"), typeof(IMainWindowViewModel));
         }
 
         public override void OnFrameworkInitializationCompleted()
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                desktop.MainWindow = new MainWindow
-                {
-                    DataContext = new MainWindowViewModel()
-                };
+                desktop.MainWindow = new MainWindow();
             }
             base.OnFrameworkInitializationCompleted();
         }

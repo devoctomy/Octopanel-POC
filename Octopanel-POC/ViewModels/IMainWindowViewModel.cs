@@ -6,6 +6,5 @@ namespace Octopanel_POC.ViewModels
 {
     public interface IMainWindowViewModel
     {
-        string Greeting { get; }
     }
 }

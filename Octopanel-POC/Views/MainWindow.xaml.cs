@@ -15,8 +15,7 @@ namespace Octopanel_POC.Views
         public MainWindow()
         {
             InitializeComponent();
-
-            ViewModel = Locator.Current.GetService<IMainWindowViewModel>();
+            DataContext = Locator.Current.GetService(this.GetType().BaseType.GetGenericArguments()[0]);
 
 #if DEBUG
             this.AttachDevTools();
@@ -24,6 +23,7 @@ namespace Octopanel_POC.Views
 
             this.WhenActivated(disposableRegistration =>
             {
+                //view model is initialised by this point
                 //add binding here
             });
         }
@@ -36,9 +36,9 @@ namespace Octopanel_POC.Views
 
         private void MainWindow_Opened(object sender, EventArgs e)
         {
-            HasSystemDecorations = false;
-            WindowState = WindowState.Maximized;
-            Topmost = true;
+            //HasSystemDecorations = false;
+            //WindowState = WindowState.Maximized;
+            //Topmost = true;
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
     }
