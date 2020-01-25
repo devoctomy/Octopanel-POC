@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Octopanel-POC": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "OCTOPANEL_SERVERTYPE": "",
+        "OCTOPANEL_SERVERURL": "",
+        "OCTOPANEL_SERVERAPIKEY": ""
+      }
+    }
+  }
+}

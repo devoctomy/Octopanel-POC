@@ -17,6 +17,7 @@ namespace Octopanel_POC.Views
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
+            WindowState = WindowState.Maximized;
         }
     }
 }
