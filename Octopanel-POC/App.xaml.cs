@@ -1,12 +1,12 @@
 ﻿using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Microsoft.Extensions.Configuration;
 using Octopanel_POC.Core.Octoprint;
 using Octopanel_POC.Core.Registration;
-using Octopanel_POC.Panels.Home;
-using Octopanel_POC.Panels.ViewModels;
 using Splat;
 using System;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 
@@ -14,6 +14,18 @@ namespace Octopanel_POC
 {
     public class App : Application
     {
+
+        private readonly IConfigurationRoot _configurationRoot;
+        private Assembly _panelsAssembly;
+
+        public App()
+        {
+            _configurationRoot = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .AddEnvironmentVariables()
+                .Build();
+        }
 
         public override void Initialize()
         {
@@ -26,8 +38,8 @@ namespace Octopanel_POC
 
             Locator.CurrentMutable.RegisterConstant(new OctoprintClient(), typeof(IOctoprintClient));
 
-            var panelsAssembly = Assembly.Load("Octopanel-POC.Panels");
-            var serviceRegistrations = panelsAssembly.GetTypes()
+            _panelsAssembly = Assembly.Load(_configurationRoot["AppSettings:PanelsAssemblyName"]);
+            var serviceRegistrations = _panelsAssembly.GetTypes()
                 .Where(x => typeof(IServiceRegistration).IsAssignableFrom(x) && !x.IsInterface && !x.IsAbstract).ToList();
             foreach (var curReg in serviceRegistrations)
             {
@@ -40,8 +52,8 @@ namespace Octopanel_POC
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                //set home panel
-                desktop.MainWindow = new HomePanel();
+                var homePanelType = _panelsAssembly.GetType(_configurationRoot["AppSettings:HomePanelType"]);
+                desktop.MainWindow = (Avalonia.Controls.Window)Activator.CreateInstance(homePanelType);
             }
             base.OnFrameworkInitializationCompleted();
         }
