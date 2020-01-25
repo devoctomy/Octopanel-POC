@@ -8,6 +8,7 @@ namespace Octopanel_POC.Panels.Registration
     {
         public void Register(IMutableDependencyResolver resolver)
         {
+            resolver.Register(() => new SplashPanelViewModel(null), typeof(ISplashPanelViewModel));
             resolver.Register(() => new HomePanelViewModel(null), typeof(IHomePanelViewModel));
         }
     }
