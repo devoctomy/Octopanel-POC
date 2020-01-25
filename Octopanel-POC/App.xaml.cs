@@ -52,8 +52,8 @@ namespace Octopanel_POC
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                var homePanelType = _panelsAssembly.GetType(_configurationRoot["AppSettings:HomePanelType"]);
-                desktop.MainWindow = (Avalonia.Controls.Window)Activator.CreateInstance(homePanelType);
+                var splashPanelType = _panelsAssembly.GetType(_configurationRoot["AppSettings:SplashPanelType"]);
+                desktop.MainWindow = (Avalonia.Controls.Window)Activator.CreateInstance(splashPanelType);
             }
             base.OnFrameworkInitializationCompleted();
         }

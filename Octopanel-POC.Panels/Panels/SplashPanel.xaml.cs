@@ -1,15 +1,16 @@
 ﻿using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.ReactiveUI;
 using Octopanel_POC.Panels.ViewModels;
 using ReactiveUI;
 using Splat;
 
-namespace Octopanel_POC.Panels.Home
+namespace Octopanel_POC.Panels.Panels
 {
-    public class HomePanel : ReactiveWindow<IHomePanelViewModel>
+    public class SplashPanel : ReactiveWindow<ISplashPanelViewModel>
     {
-        public HomePanel()
+        public SplashPanel()
         {
             this.InitializeComponent();
             DataContext = Locator.Current.GetService(this.GetType().BaseType.GetGenericArguments()[0]);
@@ -20,9 +21,6 @@ namespace Octopanel_POC.Panels.Home
 
             this.WhenActivated(disposableRegistration =>
             {
-                WindowStartupLocation = Avalonia.Controls.WindowStartupLocation.CenterScreen;
-
-                //view model is initialised by this point
                 //add binding here
             });
         }

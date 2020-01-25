@@ -6,11 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Home\HomePanel.xaml" />
+    <None Remove="Panels\SplashPanel.xaml" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Home\HomePanel.xaml">
+    <EmbeddedResource Include="Panels\HomePanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\SplashPanel.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
