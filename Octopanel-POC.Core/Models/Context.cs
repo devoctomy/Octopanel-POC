@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Octopanel_POC.Octoprint
+namespace Octopanel_POC.Core.Models
 {
-    public interface IOctoprintClient
+    public class Context
     {
     }
 }

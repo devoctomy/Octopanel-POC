@@ -1,10 +1,14 @@
 ﻿using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using Octopanel_POC.Octoprint;
-using Octopanel_POC.ViewModels;
-using Octopanel_POC.Views;
+using Octopanel_POC.Core.Octoprint;
+using Octopanel_POC.Core.Registration;
+using Octopanel_POC.Panels.Home;
+using Octopanel_POC.Panels.ViewModels;
 using Splat;
+using System;
+using System.Linq;
+using System.Reflection;
 
 namespace Octopanel_POC
 {
@@ -22,14 +26,22 @@ namespace Octopanel_POC
 
             Locator.CurrentMutable.RegisterConstant(new OctoprintClient(), typeof(IOctoprintClient));
 
-            Locator.CurrentMutable.Register(() => new MainWindowViewModel("Hello World!"), typeof(IMainWindowViewModel));
+            var panelsAssembly = Assembly.Load("Octopanel-POC.Panels");
+            var serviceRegistrations = panelsAssembly.GetTypes()
+                .Where(x => typeof(IServiceRegistration).IsAssignableFrom(x) && !x.IsInterface && !x.IsAbstract).ToList();
+            foreach (var curReg in serviceRegistrations)
+            {
+                var regInstance = (IServiceRegistration)Activator.CreateInstance(curReg);
+                regInstance.Register(Locator.CurrentMutable);
+            }
         }
 
         public override void OnFrameworkInitializationCompleted()
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                desktop.MainWindow = new MainWindow();
+                //set home panel
+                desktop.MainWindow = new HomePanel();
             }
             base.OnFrameworkInitializationCompleted();
         }

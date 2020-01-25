@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 
-namespace Octopanel_POC.Octoprint
+namespace Octopanel_POC.Core.Octoprint
 {
     public class OctoprintClient : IOctoprintClient
     {
