@@ -1,6 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using System;
 
 namespace Octopanel_POC.Views
 {
@@ -17,7 +18,15 @@ namespace Octopanel_POC.Views
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
+            Opened += MainWindow_Opened;
+        }
+
+        private void MainWindow_Opened(object sender, EventArgs e)
+        {
+            HasSystemDecorations = false;
             WindowState = WindowState.Maximized;
+            Topmost = true;
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
     }
 }
