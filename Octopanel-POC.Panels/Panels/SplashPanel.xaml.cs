@@ -2,6 +2,7 @@
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.ReactiveUI;
+using Octopanel_POC.Core.ViewModels;
 using Octopanel_POC.Panels.ViewModels;
 using ReactiveUI;
 using Splat;
@@ -13,7 +14,8 @@ namespace Octopanel_POC.Panels.Panels
         public SplashPanel()
         {
             this.InitializeComponent();
-            DataContext = Locator.Current.GetService(this.GetType().BaseType.GetGenericArguments()[0]);
+            var viewModel = Locator.Current.GetService(this.GetType().BaseType.GetGenericArguments()[0]);
+            DataContext = viewModel;
 
 #if DEBUG
             this.AttachDevTools();
@@ -21,7 +23,7 @@ namespace Octopanel_POC.Panels.Panels
 
             this.WhenActivated(disposableRegistration =>
             {
-                //add binding here
+
             });
         }
 
