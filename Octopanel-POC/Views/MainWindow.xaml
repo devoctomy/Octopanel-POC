@@ -6,7 +6,8 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Octopanel_POC.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Octopanel_POC">
+        Title="Octopanel_POC"
+        WindowState="Maximized">
 
     <Design.DataContext>
         <vm:MainWindowViewModel/>
