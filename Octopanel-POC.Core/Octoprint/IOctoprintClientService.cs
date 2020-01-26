@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Octopanel_POC.Core.Octoprint
 {
-    public interface IOctoprintClient
+    public interface IOctoprintClientService
     {
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Octopanel_POC.Core.UI
 {
-    public interface IUiConfigLoader
+    public interface IUiConfigLoaderService
     {
         void Load(string uiConfigPath);
         MenuItem FindMenuItem(string key);

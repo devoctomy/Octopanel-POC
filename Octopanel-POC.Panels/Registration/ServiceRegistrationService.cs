@@ -4,7 +4,7 @@ using Splat;
 
 namespace Octopanel_POC.Panels.Registration
 {
-    public class ServiceRegistration : IServiceRegistration
+    public class ServiceRegistrationService : IServiceRegistrationService
     {
         public void Register(IMutableDependencyResolver resolver)
         {

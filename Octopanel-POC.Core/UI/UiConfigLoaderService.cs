@@ -10,13 +10,13 @@ using System.Text;
 
 namespace Octopanel_POC.Core.UI
 {
-    public class UiConfigLoader : IUiConfigLoader
+    public class UiConfigLoaderService : IUiConfigLoaderService
     {
         private readonly Dictionary<string, MenuItem> _menuItemCache;
-        private IServiceRegistration _serviceRegistration;
+        private IServiceRegistrationService _serviceRegistration;
         private UiConfig _uiConfig;
 
-        public UiConfigLoader()
+        public UiConfigLoaderService()
         {
             _menuItemCache = new Dictionary<string, MenuItem>();
         }
@@ -73,7 +73,7 @@ namespace Octopanel_POC.Core.UI
         {
             foreach(string curServiceRegistration in _uiConfig.ServiceRegistrations)
             {
-                var serviceRegistration = LoadType(curServiceRegistration, out _) as IServiceRegistration;
+                var serviceRegistration = LoadType(curServiceRegistration, out _) as IServiceRegistrationService;
                 if(serviceRegistration != null)
                 {
                     serviceRegistration.Register(Locator.CurrentMutable);

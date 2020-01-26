@@ -5,11 +5,11 @@ namespace Octopanel_POC.Core.Models
 {
     public class Context
     {
-        public IOctoprintClient OctoprintClient { get; }
+        public IOctoprintClientService OctoprintClient { get; }
 
         public Context()
         {
-            OctoprintClient = Locator.Current.GetService<IOctoprintClient>();
+            OctoprintClient = Locator.Current.GetService<IOctoprintClientService>();
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Octopanel_POC.Core.Registration
 {
-    public interface IServiceRegistration
+    public interface IServiceRegistrationService
     {
         void Register(IMutableDependencyResolver resolver);
     }

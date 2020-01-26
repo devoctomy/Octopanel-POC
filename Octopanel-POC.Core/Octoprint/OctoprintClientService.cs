@@ -3,11 +3,11 @@ using System.Net.Http;
 
 namespace Octopanel_POC.Core.Octoprint
 {
-    public class OctoprintClient : IOctoprintClient
+    public class OctoprintClientService : IOctoprintClientService
     {
         private readonly HttpClient _httpClient;
 
-        public OctoprintClient()
+        public OctoprintClientService()
         {
             _httpClient = new HttpClient()
             {

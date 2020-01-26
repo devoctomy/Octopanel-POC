@@ -18,7 +18,7 @@ namespace Octopanel_POC
     {
 
         private readonly IConfigurationRoot _configuration;
-        private IUiConfigLoader _uiConfigLoader;
+        private IUiConfigLoaderService _uiConfigLoader;
 
         public App()
         {
@@ -31,7 +31,7 @@ namespace Octopanel_POC
 
         private void LoadUiConfig()
         {
-            _uiConfigLoader = Locator.Current.GetService<IUiConfigLoader>();
+            _uiConfigLoader = Locator.Current.GetService<IUiConfigLoaderService>();
             var uiConfigPath = Path.Combine(
                 Directory.GetCurrentDirectory(),
                 "uiconfig.json");
@@ -47,8 +47,8 @@ namespace Octopanel_POC
         {
             base.RegisterServices();
 
-            Locator.CurrentMutable.RegisterConstant(new OctoprintClient(), typeof(IOctoprintClient));
-            Locator.CurrentMutable.RegisterConstant(new UiConfigLoader(), typeof(IUiConfigLoader));
+            Locator.CurrentMutable.RegisterConstant(new OctoprintClientService(), typeof(IOctoprintClientService));
+            Locator.CurrentMutable.RegisterConstant(new UiConfigLoaderService(), typeof(IUiConfigLoaderService));
 
             LoadUiConfig();
         }
