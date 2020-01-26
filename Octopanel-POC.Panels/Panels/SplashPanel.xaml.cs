@@ -17,14 +17,6 @@ namespace Octopanel_POC.Panels.Panels
 #if DEBUG
             this.AttachDevTools();
 #endif
-
-            var pop = this.FindControl<Button>("ARSE");
-            pop.Click += Pop_Click;
-        }
-
-        private async void Pop_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)
-        {
-            var pop = await ((ISplashPanelViewModel)DataContext).Context.OctoprintClient.GetVersionAsync(CancellationToken.None);
         }
 
         private void InitializeComponent()

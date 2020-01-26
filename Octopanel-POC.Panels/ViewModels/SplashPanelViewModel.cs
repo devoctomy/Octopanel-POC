@@ -27,7 +27,7 @@ namespace Octopanel_POC.Panels.ViewModels
         public SplashPanelViewModel(IContext context)
             : base(context)
         {
-            //var pop = context.OctoprintClient.GetVersionAsync(CancellationToken.None).GetAwaiter().GetResult();
+            
         }
     }
 }

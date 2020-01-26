@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Octopanel_POC.Core.Config;
+using Octopanel_POC.Core.Octoprint.Model;
 using Splat;
 using System;
 using System.Net.Http;
@@ -22,7 +23,7 @@ namespace Octopanel_POC.Core.Octoprint
             var socketsHandler = new SocketsHttpHandler();
             socketsHandler.SslOptions = new SslClientAuthenticationOptions
             {
-                ClientCertificates = new X509CertificateCollection(
+                ClientCertificates = string.IsNullOrEmpty(_appSettings.ServerClientCert) ? null : new X509CertificateCollection(
                     new[]
                     {
                         new X509Certificate(
@@ -48,6 +49,22 @@ namespace Octopanel_POC.Core.Octoprint
             {
                 var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<Model.Version>(responseString);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public async Task<PrinterState> GetPrinterStateAsync(CancellationToken cancellationToken)
+        {
+            var httpResponseMessage = await _httpClient.GetAsync(
+                new Uri("/api/printer", UriKind.Relative),
+                cancellationToken);
+            if (httpResponseMessage.IsSuccessStatusCode)
+            {
+                var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<PrinterState>(responseString);
             }
             else
             {
