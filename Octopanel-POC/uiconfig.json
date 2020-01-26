@@ -9,11 +9,11 @@
       "items": [
         {
           "key": "splash",
-          "panel": "Octopanel-POC.Panels:Octopanel_POC.Panels.Panels.SplashPanel"
+          "panel": "Octopanel-POC.Panels:Octopanel_POC.Panels.Views.Splash"
         },
         {
           "key": "home",
-          "panel": "Octopanel-POC.Panels:Octopanel_POC.Panels.Panels.HomePanel"
+          "panel": "Octopanel-POC.Panels:Octopanel_POC.Panels.Views.HomePanel"
         },
         {
           "key": "temp",
@@ -22,13 +22,13 @@
             {
               "key": "toolTemp",
               "text": "Tool",
-              "panel": "Octopanel-POC.Panels:Octopanel_POC.Panels.Panels.ToolTemp",
+              "panel": "Octopanel-POC.Panels:Octopanel_POC.Panels.Views.ToolTemp",
               "visible": true
             },
             {
               "key": "bedTemp",
               "text": "Bed",
-              "panel": "Octopanel-POC.Panels:Octopanel_POC.Panels.Panels.BedTemp",
+              "panel": "Octopanel-POC.Panels:Octopanel_POC.Panels.Views.BedTemp",
               "visible": true
             }
           ]

@@ -4,11 +4,11 @@ using Avalonia.Markup.Xaml;
 using Octopanel_POC.Panels.ViewModels;
 using Splat;
 
-namespace Octopanel_POC.Panels.Panels
+namespace Octopanel_POC.Panels.Views
 {
-    public class SplashPanel : Window
+    public class Splash : Window
     {
-        public SplashPanel()
+        public Splash()
         {
             this.InitializeComponent();
             DataContext = Locator.Current.GetService<ISplashPanelViewModel>();

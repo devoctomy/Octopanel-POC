@@ -5,18 +5,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Panels\SplashPanel.xaml" />
+    <Compile Update="**\*.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <AvaloniaResource Include="**\*.xaml">
+      <SubType>Designer</SubType>
+    </AvaloniaResource>
+    <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
+
   <ItemGroup>
-    <None Remove="Panels\HomePanel.xaml" />
+    <AvaloniaResource Remove="Views\Home.xaml" />
+    <AvaloniaResource Remove="Views\Splash.xaml" />
   </ItemGroup>
+  
   <ItemGroup>
-    <EmbeddedResource Include="Panels\HomePanel.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Panels\SplashPanel.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
+    <None Remove="Views\Home.xaml" />
+    <None Remove="Views\Splash.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,6 +30,18 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Octopanel-POC.Core\Octopanel-POC.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Splash.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Home.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
