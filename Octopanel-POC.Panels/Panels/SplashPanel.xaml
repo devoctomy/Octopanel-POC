@@ -1,12 +1,10 @@
-﻿<reactiveui:ReactiveWindow xmlns="https://github.com/avaloniaui"
-                           x:TypeArguments="vm:ISplashPanelViewModel"
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:controls="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:reactiveui="clr-namespace:Avalonia.RecativeUI"
-        xmlns:vm="clr-namespace:Octopanel_POC.Panels.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Octopanel_POC.Panels.Panels.SplashPanel"
-        Title="SplashPanel">
-  <TextBlock Text="{Binding Path=Message, Mode=TwoWay}"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
-</reactiveui:ReactiveWindow>
+        Title="Splash">
+    <controls:Button x:Name="ARSE"></controls:Button>
+</Window>

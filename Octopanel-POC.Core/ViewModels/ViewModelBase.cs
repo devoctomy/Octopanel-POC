@@ -6,9 +6,9 @@ namespace Octopanel_POC.Core.ViewModels
 {
     public class ViewModelBase : ReactiveObject
     {
-        public Context Context { get; }
+        public IContext Context { get; }
 
-        protected ViewModelBase(Context context)
+        protected ViewModelBase(IContext context)
         {
             Context = context;
         }

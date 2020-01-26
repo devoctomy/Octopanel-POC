@@ -4,6 +4,6 @@ namespace Octopanel_POC.Panels.ViewModels
 {
     public interface ISplashPanelViewModel
     {
-        public Context Context { get; }
+        public IContext Context { get; }
     }
 }

@@ -27,6 +27,22 @@ namespace Octopanel_POC.Core.Config
             }
         }
 
+        public string ServerClientCert
+        {
+            get
+            {
+                return GetEnvironmentVariable("OCTOPANEL_SERVERCLIENTCERT");
+            }
+        }
+
+        public string ServerClientCertPassword
+        {
+            get
+            {
+                return GetEnvironmentVariable("OCTOPANEL_SERVERCLIENTCERTPASSWORD");
+            }
+        }
+
         private string GetEnvironmentVariable(string variable)
         {
             var machineValue = Environment.GetEnvironmentVariable(

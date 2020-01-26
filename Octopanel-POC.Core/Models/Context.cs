@@ -3,7 +3,7 @@ using Splat;
 
 namespace Octopanel_POC.Core.Models
 {
-    public class Context
+    public class Context : IContext
     {
         public IOctoprintClientService OctoprintClient { get; }
 

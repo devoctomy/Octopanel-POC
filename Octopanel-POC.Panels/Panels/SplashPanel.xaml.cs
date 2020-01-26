@@ -1,30 +1,30 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-using Avalonia.ReactiveUI;
-using Octopanel_POC.Core.ViewModels;
 using Octopanel_POC.Panels.ViewModels;
-using ReactiveUI;
 using Splat;
+using System.Threading;
 
 namespace Octopanel_POC.Panels.Panels
 {
-    public class SplashPanel : ReactiveWindow<ISplashPanelViewModel>
+    public class SplashPanel : Window
     {
         public SplashPanel()
         {
             this.InitializeComponent();
-            var viewModel = Locator.Current.GetService(this.GetType().BaseType.GetGenericArguments()[0]);
-            DataContext = viewModel;
+            DataContext = Locator.Current.GetService<ISplashPanelViewModel>();
 
 #if DEBUG
             this.AttachDevTools();
 #endif
 
-            this.WhenActivated(disposableRegistration =>
-            {
+            var pop = this.FindControl<Button>("ARSE");
+            pop.Click += Pop_Click;
+        }
 
-            });
+        private async void Pop_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            var pop = await ((ISplashPanelViewModel)DataContext).Context.OctoprintClient.GetVersionAsync(CancellationToken.None);
         }
 
         private void InitializeComponent()

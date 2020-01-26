@@ -1,5 +1,6 @@
 ﻿using Octopanel_POC.Core.Models;
 using Octopanel_POC.Core.ViewModels;
+using System.Threading;
 
 namespace Octopanel_POC.Panels.ViewModels
 {
@@ -23,9 +24,10 @@ namespace Octopanel_POC.Panels.ViewModels
             }
         }
 
-        public SplashPanelViewModel(Context context)
+        public SplashPanelViewModel(IContext context)
             : base(context)
         {
+            //var pop = context.OctoprintClient.GetVersionAsync(CancellationToken.None).GetAwaiter().GetResult();
         }
     }
 }

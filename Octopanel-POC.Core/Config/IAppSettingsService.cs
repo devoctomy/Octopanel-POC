@@ -9,5 +9,7 @@ namespace Octopanel_POC.Core.Config
         string ServerType { get; }
         string ServerUrl { get; }
         string ServerApiKey { get; }
+        string ServerClientCert { get; }
+        string ServerClientCertPassword { get; }
     }
 }

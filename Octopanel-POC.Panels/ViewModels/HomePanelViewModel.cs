@@ -5,7 +5,7 @@ namespace Octopanel_POC.Panels.ViewModels
 {
     public class HomePanelViewModel : ViewModelBase, IHomePanelViewModel
     {
-        public HomePanelViewModel(Context context)
+        public HomePanelViewModel(IContext context)
             : base(context)
         {
 

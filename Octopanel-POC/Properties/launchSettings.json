@@ -5,7 +5,9 @@
       "environmentVariables": {
         "OCTOPANEL_SERVERTYPE": "",
         "OCTOPANEL_SERVERURL": "",
-        "OCTOPANEL_SERVERAPIKEY": ""
+        "OCTOPANEL_SERVERAPIKEY": "",
+        "OCTOPANEL_SERVERCLIENTCERT": "",
+        "OCTOPANEL_SERVERCLIENTCERTPASSWORD": ""
       }
     }
   }
