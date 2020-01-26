@@ -21,11 +21,19 @@ namespace Octopanel_POC.Core.UI
             _menuItemCache = new Dictionary<string, MenuItem>();
         }
 
-        public void Load(string uiConfigPath)
+        public bool Load(string uiConfigPath)
         {
-            var uiConfigData = File.ReadAllText(uiConfigPath);
-            _uiConfig = JsonConvert.DeserializeObject<UiConfig>(uiConfigData);
-            RegisterServices();
+            if(File.Exists(uiConfigPath))
+            {
+                var uiConfigData = File.ReadAllText(uiConfigPath);
+                _uiConfig = JsonConvert.DeserializeObject<UiConfig>(uiConfigData);
+                RegisterServices();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public MenuItem FindMenuItem(string key)

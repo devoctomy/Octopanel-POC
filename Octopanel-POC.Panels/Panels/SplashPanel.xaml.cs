@@ -3,7 +3,6 @@ using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Octopanel_POC.Panels.ViewModels;
 using Splat;
-using System.Threading;
 
 namespace Octopanel_POC.Panels.Panels
 {

@@ -4,7 +4,7 @@ namespace Octopanel_POC.Core.UI
 {
     public interface IUiConfigLoaderService
     {
-        void Load(string uiConfigPath);
+        bool Load(string uiConfigPath);
         MenuItem FindMenuItem(string key);
         Avalonia.Controls.Window LoadPanel(string key);
     }

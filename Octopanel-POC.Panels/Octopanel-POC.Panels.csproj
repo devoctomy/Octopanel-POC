@@ -1,5 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Octopanel_POC.Panels</RootNamespace>
@@ -8,7 +7,9 @@
   <ItemGroup>
     <None Remove="Panels\SplashPanel.xaml" />
   </ItemGroup>
-
+  <ItemGroup>
+    <None Remove="Panels\HomePanel.xaml" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Panels\HomePanel.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -19,8 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.9.2" />
-    <PackageReference Include="Avalonia.Desktop" Version="0.9.2" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="0.9.2" />
   </ItemGroup>
 
