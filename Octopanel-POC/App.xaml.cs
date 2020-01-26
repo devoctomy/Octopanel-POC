@@ -2,15 +2,11 @@
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
+using Octopanel_POC.Core.Config;
 using Octopanel_POC.Core.Octoprint;
-using Octopanel_POC.Core.Registration;
 using Octopanel_POC.Core.UI;
 using Splat;
-using System;
 using System.IO;
-using System.Linq;
-using System.Reflection;
 
 namespace Octopanel_POC
 {
@@ -47,6 +43,7 @@ namespace Octopanel_POC
         {
             base.RegisterServices();
 
+            Locator.CurrentMutable.RegisterConstant(new AppSettingsService(), typeof(IAppSettingsService));
             Locator.CurrentMutable.RegisterConstant(new OctoprintClientService(), typeof(IOctoprintClientService));
             Locator.CurrentMutable.RegisterConstant(new UiConfigLoaderService(), typeof(IUiConfigLoaderService));
 
