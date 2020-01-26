@@ -1,0 +1,42 @@
+﻿{
+  "serviceRegistrations": [
+    "Octopanel-POC.Panels:Octopanel_POC.Panels.Registration.ServiceRegistration"
+  ],
+  "menu" : [
+    {
+      "key": "main",
+      "text": "Main Menu",
+      "items": [
+        {
+          "key": "splash",
+          "panel": "Octopanel-POC.Panels:Octopanel_POC.Panels.Panels.SplashPanel"
+        },
+        {
+          "key": "home",
+          "panel": "Octopanel-POC.Panels:Octopanel_POC.Panels.Panels.HomePanel"
+        },
+        {
+          "key": "temp",
+          "text": "Temperature",
+          "items": [
+            {
+              "key": "toolTemp",
+              "text": "Tool",
+              "panel": "Octopanel-POC.Panels:Octopanel_POC.Panels.Panels.ToolTemp",
+              "visible": true
+            },
+            {
+              "key": "bedTemp",
+              "text": "Bed",
+              "panel": "Octopanel-POC.Panels:Octopanel_POC.Panels.Panels.BedTemp",
+              "visible": true
+            }
+          ]
+        },
+        {
+
+        }
+      ]
+    }
+  ]
+}

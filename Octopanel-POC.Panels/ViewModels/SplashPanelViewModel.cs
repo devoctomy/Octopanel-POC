@@ -18,7 +18,7 @@ namespace Octopanel_POC.Panels.ViewModels
                 if(_message != value)
                 {
                     _message = value;
-                    RaisePropertyChanged(new System.ComponentModel.PropertyChangedEventArgs("Message"));
+                    RaisePropertyChanged(new System.ComponentModel.PropertyChangedEventArgs(nameof(Message)));
                 }
             }
         }

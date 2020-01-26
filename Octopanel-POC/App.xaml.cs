@@ -2,8 +2,10 @@
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using Octopanel_POC.Core.Octoprint;
 using Octopanel_POC.Core.Registration;
+using Octopanel_POC.Core.UI;
 using Splat;
 using System;
 using System.IO;
@@ -15,16 +17,25 @@ namespace Octopanel_POC
     public class App : Application
     {
 
-        private readonly IConfigurationRoot _configurationRoot;
-        private Assembly _panelsAssembly;
+        private readonly IConfigurationRoot _configuration;
+        private IUiConfigLoader _uiConfigLoader;
 
         public App()
         {
-            _configurationRoot = new ConfigurationBuilder()
+            _configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
                 .AddEnvironmentVariables()
                 .Build();
+        }
+
+        private void LoadUiConfig()
+        {
+            _uiConfigLoader = Locator.Current.GetService<IUiConfigLoader>();
+            var uiConfigPath = Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "uiconfig.json");
+            _uiConfigLoader.Load(uiConfigPath);
         }
 
         public override void Initialize()
@@ -37,23 +48,16 @@ namespace Octopanel_POC
             base.RegisterServices();
 
             Locator.CurrentMutable.RegisterConstant(new OctoprintClient(), typeof(IOctoprintClient));
+            Locator.CurrentMutable.RegisterConstant(new UiConfigLoader(), typeof(IUiConfigLoader));
 
-            _panelsAssembly = Assembly.Load(_configurationRoot["AppSettings:PanelsAssemblyName"]);
-            var serviceRegistrations = _panelsAssembly.GetTypes()
-                .Where(x => typeof(IServiceRegistration).IsAssignableFrom(x) && !x.IsInterface && !x.IsAbstract).ToList();
-            foreach (var curReg in serviceRegistrations)
-            {
-                var regInstance = (IServiceRegistration)Activator.CreateInstance(curReg);
-                regInstance.Register(Locator.CurrentMutable);
-            }
+            LoadUiConfig();
         }
 
         public override void OnFrameworkInitializationCompleted()
-        {
+        {          
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                var splashPanelType = _panelsAssembly.GetType(_configurationRoot["AppSettings:SplashPanelType"]);
-                desktop.MainWindow = (Avalonia.Controls.Window)Activator.CreateInstance(splashPanelType);
+                desktop.MainWindow = _uiConfigLoader.LoadPanel("splash");
             }
             base.OnFrameworkInitializationCompleted();
         }
