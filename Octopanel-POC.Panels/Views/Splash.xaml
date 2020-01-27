@@ -1,11 +1,12 @@
-﻿<Window xmlns="https://github.com/avaloniaui"
+﻿<UserControl xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:Octopanel_POC.Panels.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="Octopanel_POC.Panels.Views.Splash"
-        Title="Splash">
-
-  <TextBlock Text="Hello World!" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-</Window>
+        x:Class="Octopanel_POC.Panels.Views.Splash">
+  <Grid>
+    <Button></Button>
+    <Image Source="avares://Octopanel-POC.Panels/Assets/Octopus_256.png"></Image>
+  </Grid>
+</UserControl>

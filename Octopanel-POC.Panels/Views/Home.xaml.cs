@@ -6,16 +6,12 @@ using Splat;
 
 namespace Octopanel_POC.Panels.Views
 {
-    public class Home : Window
+    public class Home : UserControl
     {
         public Home()
         {
             this.InitializeComponent();
             DataContext = Locator.Current.GetService<IHomePanelViewModel>();
-
-#if DEBUG
-            this.AttachDevTools();
-#endif
         }
 
         private void InitializeComponent()

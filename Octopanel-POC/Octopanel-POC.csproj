@@ -10,11 +10,14 @@
     <AvaloniaResource Include="**\*.xaml">
       <SubType>Designer</SubType>
     </AvaloniaResource>
-    <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <AvaloniaResource Remove="Views\Main.xaml" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="appsettings.json" />
     <None Remove="uiconfig.json" />
+    <None Remove="Views\Main.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="appsettings.json">
@@ -39,5 +42,10 @@
     <ProjectReference Include="..\Octopanel-POC.Panels\Octopanel-POC.Panels.csproj">
       <Private>true</Private>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Main.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

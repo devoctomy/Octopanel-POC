@@ -70,11 +70,11 @@ namespace Octopanel_POC.Core.UI
             return null;
         }
 
-        public Avalonia.Controls.Window LoadPanel(string key)
+        public Avalonia.Controls.UserControl LoadPanel(string key)
         {
             var menuItem = FindMenuItem(key);
             var window = LoadType(menuItem.Panel, out _);
-            return window as Avalonia.Controls.Window;
+            return window as Avalonia.Controls.UserControl;
         }
 
         private void RegisterServices()

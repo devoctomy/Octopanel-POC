@@ -6,16 +6,12 @@ using Splat;
 
 namespace Octopanel_POC.Panels.Views
 {
-    public class Splash : Window
+    public class Splash : UserControl
     {
         public Splash()
         {
             this.InitializeComponent();
             DataContext = Locator.Current.GetService<ISplashPanelViewModel>();
-
-#if DEBUG
-            this.AttachDevTools();
-#endif
         }
 
         private void InitializeComponent()

@@ -13,7 +13,7 @@
         },
         {
           "key": "home",
-          "panel": "Octopanel-POC.Panels:Octopanel_POC.Panels.Views.HomePanel"
+          "panel": "Octopanel-POC.Panels:Octopanel_POC.Panels.Views.Home"
         },
         {
           "key": "temp",

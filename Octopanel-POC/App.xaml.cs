@@ -6,6 +6,7 @@ using Octopanel_POC.Core.Config;
 using Octopanel_POC.Core.Models;
 using Octopanel_POC.Core.Octoprint;
 using Octopanel_POC.Core.UI;
+using Octopanel_POC.Views;
 using Splat;
 using System.IO;
 
@@ -56,7 +57,7 @@ namespace Octopanel_POC
         {          
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                desktop.MainWindow = _uiConfigLoader.LoadPanel("splash");
+                desktop.MainWindow = new Main(); //_uiConfigLoader.LoadPanel("splash");
             }
             base.OnFrameworkInitializationCompleted();
         }

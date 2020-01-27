@@ -6,6 +6,6 @@ namespace Octopanel_POC.Core.UI
     {
         bool Load(string uiConfigPath);
         MenuItem FindMenuItem(string key);
-        Avalonia.Controls.Window LoadPanel(string key);
+        Avalonia.Controls.UserControl LoadPanel(string key);
     }
 }
