@@ -24,6 +24,12 @@ namespace Octopanel_POC.Panels.ViewModels
             }
         }
 
+        public SplashPanelViewModel()
+            : base()
+        {
+
+        }
+
         public SplashPanelViewModel(IContext context)
             : base(context)
         {

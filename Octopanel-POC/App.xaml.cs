@@ -48,6 +48,7 @@ namespace Octopanel_POC
             Locator.CurrentMutable.RegisterConstant(new AppSettingsService(), typeof(IAppSettingsService));
             Locator.CurrentMutable.RegisterConstant(new OctoprintClientService(), typeof(IOctoprintClientService));
             Locator.CurrentMutable.RegisterConstant(new UiConfigLoaderService(), typeof(IUiConfigLoaderService));
+            Locator.CurrentMutable.RegisterConstant(new Navigator(), typeof(INavigator));
             Locator.CurrentMutable.RegisterConstant(new Context(), typeof(IContext));
 
             LoadUiConfig();

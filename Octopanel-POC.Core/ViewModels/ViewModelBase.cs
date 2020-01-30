@@ -8,6 +8,10 @@ namespace Octopanel_POC.Core.ViewModels
     {
         public IContext Context { get; }
 
+        protected ViewModelBase()
+        {
+        }
+
         protected ViewModelBase(IContext context)
         {
             Context = context;

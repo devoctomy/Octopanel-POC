@@ -5,8 +5,21 @@
         xmlns:vm="clr-namespace:Octopanel_POC.Panels.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Octopanel_POC.Panels.Views.Splash">
+  <Design.DataContext>
+    <vm:SplashPanelViewModel/>
+  </Design.DataContext>
   <Grid>
-    <Button></Button>
-    <Image Source="avares://Octopanel-POC.Panels/Assets/Octopus_256.png"></Image>
+    <Grid.RowDefinitions>
+      <RowDefinition></RowDefinition>
+      <RowDefinition Height="32"></RowDefinition>
+    </Grid.RowDefinitions>
+    <Button Grid.Row="0" Grid.RowSpan="2"></Button>
+    <Image Grid.Row="0" Source="avares://Octopanel-POC.Panels/Assets/Octopus_256.png"></Image>
+    <TextBlock 
+      Grid.Row="1"
+      Text="{Binding Message}"
+      HorizontalAlignment="Center"
+      FontSize="14"
+      FontWeight="Bold"></TextBlock>
   </Grid>
 </UserControl>
