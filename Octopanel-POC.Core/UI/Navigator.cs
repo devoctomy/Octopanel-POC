@@ -10,11 +10,13 @@ namespace Octopanel_POC.Core.UI
     {
         private readonly Stack<string> _panelStack;
         private IUiConfigLoaderService _uiConfigLoader;
+        private readonly Dictionary<string, UserControl> _panelCache;
 
         public Navigator()
         {
             _panelStack = new Stack<string>();
             _uiConfigLoader = Locator.Current.GetService<IUiConfigLoaderService>();
+            _panelCache = new Dictionary<string, UserControl>();
         }
 
         public bool GoBack()
@@ -33,11 +35,17 @@ namespace Octopanel_POC.Core.UI
 
         public UserControl ChangePage(string key)
         {           
-            var panel = _uiConfigLoader.LoadPanel("splash");
-            panel.HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Stretch;
-            panel.VerticalAlignment = Avalonia.Layout.VerticalAlignment.Stretch;
-            _panelStack.Push(key);
-            return panel;
+            if(_panelCache.ContainsKey(key))
+            {
+                return _panelCache[key];
+            }
+            else
+            {
+                var panel = _uiConfigLoader.LoadPanel("splash");
+                _panelStack.Push(key);
+                _panelCache.Add(key, panel);
+                return panel;
+            }
         }
 
     }
