@@ -1,21 +1,33 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using Octopanel_POC.Core.Models;
 using Octopanel_POC.Core.UI;
 using Splat;
 
 namespace Octopanel_POC.Views
 {
-    public class Main : Window
+    public class Main : Window, IMainHost
     {
         private IUiConfigLoaderService _uiConfigLoader;
-        private INavigator _navigator;
+        private IContext _context;
+        private bool _activated;
+
+        public Panel PanelHost
+        {
+            get
+            {
+                var panelHost = this.FindControl<Grid>("PanelHost");
+                return panelHost;
+            }
+        }
 
         public Main()
         {
             this.InitializeComponent();
             _uiConfigLoader = Locator.Current.GetService<IUiConfigLoaderService>();
-            _navigator = Locator.Current.GetService<INavigator>();
+            _context = Locator.Current.GetService<IContext>();
+            _context.MainHost = this;
 
 #if DEBUG
             this.AttachDevTools();
@@ -26,11 +38,14 @@ namespace Octopanel_POC.Views
 
         private void Main_Activated(object sender, System.EventArgs e)
         {
-            var panelHost = this.FindControl<Grid>("PanelHost");          
-            var panel = _navigator.ChangePage("splash");
-            panel.HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Stretch;
-            panel.VerticalAlignment = Avalonia.Layout.VerticalAlignment.Stretch;
-            panelHost.Children.Add(panel);
+            if(_activated)
+            {
+                return;
+            }
+     
+            _context.ChangePage("splash");
+
+            _activated = true;
         }
 
         private void InitializeComponent()

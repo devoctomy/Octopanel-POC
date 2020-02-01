@@ -1,12 +1,14 @@
 ﻿using Octopanel_POC.Core.Models;
 using Octopanel_POC.Core.ViewModels;
-using System.Threading;
+using ReactiveUI;
+using System.Reactive;
 
 namespace Octopanel_POC.Panels.ViewModels
 {
     public class SplashPanelViewModel : ViewModelBase, ISplashPanelViewModel, ISplashViewModel
     {
         private string _message;
+        private ReactiveCommand<object, Unit> _logoCommand;
 
         public string Message
         {
@@ -24,6 +26,18 @@ namespace Octopanel_POC.Panels.ViewModels
             }
         }
 
+        public ReactiveCommand<object, Unit> LogoCommand
+        {
+            get
+            {
+                if(_logoCommand == null)
+                {
+                    _logoCommand = ReactiveCommand.Create<object>(DoStuff);
+                }
+                return _logoCommand;
+            }
+        }
+
         public SplashPanelViewModel()
             : base()
         {
@@ -33,7 +47,11 @@ namespace Octopanel_POC.Panels.ViewModels
         public SplashPanelViewModel(IContext context)
             : base(context)
         {
-            
+        }
+
+        private void DoStuff(object parameter)
+        {
+            Context.ChangePage("home");
         }
     }
 }

@@ -13,7 +13,7 @@
       <RowDefinition></RowDefinition>
       <RowDefinition Height="32"></RowDefinition>
     </Grid.RowDefinitions>
-    <Button Grid.Row="0" Grid.RowSpan="2"></Button>
+    <Button Grid.Row="0" Grid.RowSpan="2" Command="{Binding LogoCommand}"></Button>
     <Image Grid.Row="0" Source="avares://Octopanel-POC.Panels/Assets/Octopus_256.png"></Image>
     <TextBlock 
       Grid.Row="1"
