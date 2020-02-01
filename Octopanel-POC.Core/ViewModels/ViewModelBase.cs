@@ -22,5 +22,15 @@ namespace Octopanel_POC.Core.ViewModels
             ((IReactiveObject)this).RaisePropertyChanged(args);
         }
 
+        public virtual void NavigatingAway()
+        {
+
+        }
+
+        public virtual void NavigatedTo()
+        {
+
+        }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Avalonia.Controls;
 using Octopanel_POC.Core.Models;
+using Octopanel_POC.Core.ViewModels;
 using Splat;
 using System;
 using System.Collections.Generic;
@@ -44,8 +45,14 @@ namespace Octopanel_POC.Core.UI
             {
                 return curPanel;
             }
-            else
+            else if (curPanel != null)
             {
+                var viewModel = curPanel.DataContext as ViewModelBase;
+                if (viewModel != null)
+                {
+                    viewModel.NavigatingAway();
+                }
+
                 context.MainHost.PanelHost.Children.Remove(curPanel);
                 curPanelKey = string.Empty;
                 curPanel = null;
@@ -65,6 +72,13 @@ namespace Octopanel_POC.Core.UI
                 context.MainHost.PanelHost.Children.Add(panel);
                 curPanelKey = key;
                 curPanel = panel;
+
+                var viewModel = panel.DataContext as ViewModelBase;
+                if (viewModel != null)
+                {
+                    viewModel.NavigatedTo();
+                }
+
                 return panel;
             }
         }
