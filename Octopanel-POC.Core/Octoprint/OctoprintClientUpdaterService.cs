@@ -9,7 +9,7 @@ namespace Octopanel_POC.Core.Octoprint
 {
     public class OctoprintClientUpdaterService : IOctoprintClientUpdaterService
     {
-        public event EventHandler<EventArgs> Updated;
+        public event EventHandler<OctoprintClientUpdaterUpdateEventArgs> Update;
         public IOctoprintClientService Client { get; private set; }
 
         private CancellationTokenSource _cancellationTokenSource;
@@ -37,9 +37,10 @@ namespace Octopanel_POC.Core.Octoprint
                 _refreshing = true;
                 var printerState = await Client.GetPrinterStateAsync(_cancellationTokenSource.Token);
 
-                if(Updated != null)
+                if(Update != null)
                 {
-                    Updated.Invoke(this, EventArgs.Empty);
+                    var args = new OctoprintClientUpdaterUpdateEventArgs(printerState);
+                    Update.Invoke(this, args);
                 }
             }
             catch(HttpRequestException)

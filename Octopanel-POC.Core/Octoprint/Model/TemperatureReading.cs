@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ReactiveUI;
+using System.ComponentModel;
 
 namespace Octopanel_POC.Core.Octoprint.Model
 {
@@ -9,5 +8,12 @@ namespace Octopanel_POC.Core.Octoprint.Model
         public float Actual { get; set; }
         public float Offset { get; set; }
         public float Target { get; set; }
+
+        public void CopyTo(TemperatureReading destination)
+        {
+            destination.Actual = Actual;
+            destination.Offset = Offset;
+            destination.Target = Target;
+        }
     }
 }

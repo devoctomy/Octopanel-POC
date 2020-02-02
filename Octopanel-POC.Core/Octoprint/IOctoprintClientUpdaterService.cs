@@ -6,7 +6,7 @@ namespace Octopanel_POC.Core.Octoprint
 {
     public interface IOctoprintClientUpdaterService
     {
-        event EventHandler<EventArgs> Updated;
+        event EventHandler<OctoprintClientUpdaterUpdateEventArgs> Update;
 
         IOctoprintClientService Client { get; }
         void Start();

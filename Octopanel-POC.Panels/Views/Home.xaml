@@ -2,8 +2,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Octopanel_POC.Panels.ViewModels"
+        xmlns:cv="clr-namespace:Octopanel_POC.Core.Converters;assembly=Octopanel-POC.Core"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Octopanel_POC.Panels.Views.Home">
+  <Design.DataContext>
+    <vm:HomePanelViewModel/>
+  </Design.DataContext>
+  <UserControl.Resources>
+    <cv:TemperatureFormatConverter x:Key="TemperatureFormatConverter" />
+  </UserControl.Resources>
   <Grid Width="200" Height="200">
     <Grid.ColumnDefinitions>
       <ColumnDefinition></ColumnDefinition>
@@ -34,7 +42,7 @@
            Height="48"
            HorizontalAlignment="Center"
            VerticalAlignment="Center"></Image>
-    <TextBlock Text="Bed Temp"
+    <TextBlock Text="{Binding Path=BedTempActual, Converter={StaticResource TemperatureFormatConverter}}"
            FontSize="14"
            FontWeight="ExtraBold"
            TextAlignment="Center"

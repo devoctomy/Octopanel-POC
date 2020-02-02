@@ -64,7 +64,8 @@ namespace Octopanel_POC.Core.Octoprint
             if (httpResponseMessage.IsSuccessStatusCode)
             {
                 var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<PrinterState>(responseString);
+                var result = JsonConvert.DeserializeObject<PrinterState>(responseString);
+                return result;
             }
             else
             {
