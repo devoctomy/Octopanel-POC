@@ -6,6 +6,7 @@ using Octopanel_POC.Core.Config;
 using Octopanel_POC.Core.Models;
 using Octopanel_POC.Core.Octoprint;
 using Octopanel_POC.Core.UI;
+using Octopanel_POC.Panels.ViewModels;
 using Octopanel_POC.Views;
 using Splat;
 using System.IO;
@@ -17,19 +18,6 @@ namespace Octopanel_POC
 
         private readonly IConfigurationRoot _configuration;
         private IUiConfigLoaderService _uiConfigLoader;
-        private Main _main;
-
-        public Main Main
-        {
-            get
-            {
-                if(_main == null)
-                {
-                    _main = new Main();
-                }
-                return _main;
-            }
-        }
 
         public App()
         {
@@ -72,7 +60,7 @@ namespace Octopanel_POC
         {          
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                desktop.MainWindow = Main;
+                desktop.MainWindow = new Main();
             }
             base.OnFrameworkInitializationCompleted();
         }

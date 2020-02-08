@@ -9,17 +9,16 @@
     <vm:SplashPanelViewModel/>
   </Design.DataContext>
   <Grid>
-    <Grid.RowDefinitions>
-      <RowDefinition></RowDefinition>
-      <RowDefinition Height="32"></RowDefinition>
-    </Grid.RowDefinitions>
-    <Button Grid.Row="0" Grid.RowSpan="2" Command="{Binding LogoCommand}"></Button>
-    <Image Grid.Row="0" Source="avares://Octopanel-POC.Panels/Assets/Octopus_256.png"></Image>
-    <TextBlock 
-      Grid.Row="1"
-      Text="{Binding Message}"
-      HorizontalAlignment="Center"
-      FontSize="14"
-      FontWeight="Bold"></TextBlock>
+    <Button Command="{Binding LogoCommand}"></Button>
+    <StackPanel VerticalAlignment="Center" Height="300">
+      <Image Source="avares://Octopanel-POC.Panels/Assets/Octopus_256.png"></Image>
+      <TextBlock
+        Grid.Row="1"
+        Text="{Binding Message}"
+        HorizontalAlignment="Center"
+        FontSize="14"
+        FontWeight="Bold">        
+      </TextBlock>
+    </StackPanel>
   </Grid>
 </UserControl>

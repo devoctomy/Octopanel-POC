@@ -1,6 +1,7 @@
 ﻿using Octopanel_POC.Core.Models;
 using Octopanel_POC.Core.ViewModels;
 using ReactiveUI;
+using System;
 using System.Reactive;
 
 namespace Octopanel_POC.Panels.ViewModels
@@ -32,7 +33,7 @@ namespace Octopanel_POC.Panels.ViewModels
             {
                 if(_logoCommand == null)
                 {
-                    _logoCommand = ReactiveCommand.Create<object>(DoStuff);
+                    _logoCommand = ReactiveCommand.Create<object>(GoHome);
                 }
                 return _logoCommand;
             }
@@ -49,7 +50,7 @@ namespace Octopanel_POC.Panels.ViewModels
         {
         }
 
-        private void DoStuff(object parameter)
+        private void GoHome(object parameter)
         {
             Context.ChangePage("home");
         }

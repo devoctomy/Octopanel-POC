@@ -10,44 +10,55 @@
     <vm:HomePanelViewModel/>
   </Design.DataContext>
   <UserControl.Resources>
-    <cv:TemperatureFormatConverter x:Key="TemperatureFormatConverter" />
+    <cv:TemperatureFormatValueConverter x:Key="TemperatureFormatValueConverter" />
+    <cv:DateTimeValueConverter x:Key="DateTimeValueConverter" />
   </UserControl.Resources>
-  <Grid Width="200" Height="200">
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition></ColumnDefinition>
-      <ColumnDefinition></ColumnDefinition>
-    </Grid.ColumnDefinitions>
-    <Grid.RowDefinitions>
-      <RowDefinition></RowDefinition>
-      <RowDefinition></RowDefinition>
-    </Grid.RowDefinitions>
-    <Image Source="avares://Octopanel-POC.Panels/Assets/Temperature_48.png" 
-           Grid.Column="0" 
-           Grid.Row="0"
-           Width="48"
-           Height="48"
-           HorizontalAlignment="Center" 
-           VerticalAlignment="Center"></Image>
-    <TextBlock Text="Tool Temp"
-               FontSize="14"
-               FontWeight="ExtraBold"
-               TextAlignment="Center"
-               Grid.Column="0"
-               Grid.Row="1">     
+  <Grid>
+    <TextBlock
+      Grid.RowSpan="2"
+      Grid.ColumnSpan="2"
+      HorizontalAlignment="Right"
+      VerticalAlignment="Top"
+      Text="{Binding Path=Context.DateTime, Converter={StaticResource DateTimeValueConverter}}">
     </TextBlock>
-    <Image Source="avares://Octopanel-POC.Panels/Assets/Temperature_48.png"
-           Grid.Column="1"
-           Grid.Row="0"
-           Width="48"
-           Height="48"
-           HorizontalAlignment="Center"
-           VerticalAlignment="Center"></Image>
-    <TextBlock Text="{Binding Path=BedTempActual, Converter={StaticResource TemperatureFormatConverter}}"
-           FontSize="14"
-           FontWeight="ExtraBold"
-           TextAlignment="Center"
-           Grid.Column="1"
-           Grid.Row="1">
-    </TextBlock>
+    <Grid Width="200" Height="200">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition></ColumnDefinition>
+        <ColumnDefinition></ColumnDefinition>
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition></RowDefinition>
+        <RowDefinition></RowDefinition>
+      </Grid.RowDefinitions>
+      <Image Source="avares://Octopanel-POC.Panels/Assets/Temperature_48.png"
+             Grid.Column="0"
+             Grid.Row="0"
+             Width="48"
+             Height="48"
+             HorizontalAlignment="Center"
+             VerticalAlignment="Center"></Image>
+      <TextBlock Text="Tool Temp"
+                 FontSize="14"
+                 FontWeight="ExtraBold"
+                 TextAlignment="Center"
+                 Grid.Column="0"
+                 Grid.Row="1">
+      </TextBlock>
+      <Image Source="avares://Octopanel-POC.Panels/Assets/Temperature_48.png"
+             Grid.Column="1"
+             Grid.Row="0"
+             Width="48"
+             Height="48"
+             HorizontalAlignment="Center"
+             VerticalAlignment="Center"></Image>
+      <TextBlock Text="{Binding Path=BedTempActual, Converter={StaticResource TemperatureFormatValueConverter}}"
+             FontSize="14"
+             FontWeight="ExtraBold"
+             TextAlignment="Center"
+             Grid.Column="1"
+             Grid.Row="1">
+      </TextBlock>
+    </Grid>
   </Grid>
+
 </UserControl>

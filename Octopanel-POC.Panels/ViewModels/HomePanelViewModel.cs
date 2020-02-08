@@ -1,7 +1,5 @@
-﻿using Octopanel_POC.Core.Converters;
-using Octopanel_POC.Core.Models;
+﻿using Octopanel_POC.Core.Models;
 using Octopanel_POC.Core.Octoprint;
-using Octopanel_POC.Core.Octoprint.Model;
 using Octopanel_POC.Core.ViewModels;
 using Splat;
 
@@ -10,14 +8,22 @@ namespace Octopanel_POC.Panels.ViewModels
     public class HomePanelViewModel : ViewModelBase, IHomePanelViewModel
     {
         private IOctoprintClientUpdaterService _octoprintClientUpdaterService;
-        private TemperatureReading _toolTemp = new TemperatureReading();
-        private TemperatureReading _bedTemp = new TemperatureReading();
+        private float _toolTemp = float.NaN;
+        private float _bedTemp = float.NaN;
 
         public float ToolTempActual
         {
             get
             {
-                return _toolTemp.Actual;
+                return _toolTemp;
+            }
+            set
+            {
+                if(_toolTemp != value)
+                {
+                    _toolTemp = value;
+                    RaisePropertyChanged(new System.ComponentModel.PropertyChangedEventArgs(nameof(ToolTempActual)));
+                }
             }
         }
 
@@ -25,7 +31,15 @@ namespace Octopanel_POC.Panels.ViewModels
         {
             get
             {
-                return _bedTemp.Actual;
+                return _bedTemp;
+            }
+            set
+            {
+                if (_bedTemp != value)
+                {
+                    _bedTemp = value;
+                    RaisePropertyChanged(new System.ComponentModel.PropertyChangedEventArgs(nameof(BedTempActual)));
+                }
             }
         }
 
@@ -44,11 +58,8 @@ namespace Octopanel_POC.Panels.ViewModels
 
         private void _octoprintClientUpdaterService_Update(object sender, OctoprintClientUpdaterUpdateEventArgs e)
         {
-            e.PrinterState.Temperature.Tool0.CopyTo(_toolTemp);
-            RaisePropertyChanged(new System.ComponentModel.PropertyChangedEventArgs(nameof(ToolTempActual)));
-
-            e.PrinterState.Temperature.Bed.CopyTo(_bedTemp);
-            RaisePropertyChanged(new System.ComponentModel.PropertyChangedEventArgs(nameof(BedTempActual)));
+            ToolTempActual = e.PrinterState.Temperature.Tool0.Actual;
+            BedTempActual = e.PrinterState.Temperature.Bed.Actual;
         }
 
         public override void NavigatedTo()
