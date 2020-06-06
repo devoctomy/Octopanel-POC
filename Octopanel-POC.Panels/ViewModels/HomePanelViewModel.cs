@@ -2,6 +2,7 @@
 using Octopanel_POC.Core.Octoprint;
 using Octopanel_POC.Core.ViewModels;
 using Splat;
+using System.ComponentModel;
 
 namespace Octopanel_POC.Panels.ViewModels
 {
@@ -22,7 +23,7 @@ namespace Octopanel_POC.Panels.ViewModels
                 if(_toolTemp != value)
                 {
                     _toolTemp = value;
-                    RaisePropertyChanged(new System.ComponentModel.PropertyChangedEventArgs(nameof(ToolTempActual)));
+                    RaisePropertyChanged(new PropertyChangedEventArgs(nameof(ToolTempActual)));
                 }
             }
         }
@@ -38,7 +39,7 @@ namespace Octopanel_POC.Panels.ViewModels
                 if (_bedTemp != value)
                 {
                     _bedTemp = value;
-                    RaisePropertyChanged(new System.ComponentModel.PropertyChangedEventArgs(nameof(BedTempActual)));
+                    RaisePropertyChanged(new PropertyChangedEventArgs(nameof(BedTempActual)));
                 }
             }
         }
@@ -58,6 +59,8 @@ namespace Octopanel_POC.Panels.ViewModels
 
         private void _octoprintClientUpdaterService_Update(object sender, OctoprintClientUpdaterUpdateEventArgs e)
         {
+            if (e.PrinterState == null) return;
+
             ToolTempActual = e.PrinterState.Temperature.Tool0.Actual;
             BedTempActual = e.PrinterState.Temperature.Bed.Actual;
         }
