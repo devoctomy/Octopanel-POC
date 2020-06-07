@@ -8,5 +8,7 @@ namespace Octopanel_POC.Core.Octoprint
     {
         Task<Version> GetVersionAsync(CancellationToken cancellationToken);
         Task<PrinterState> GetPrinterStateAsync(CancellationToken cancellationToken);
+        Task<ConnectionStatus> GetConnectionStatusAsync(CancellationToken cancellationToken);
+
     }
 }

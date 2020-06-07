@@ -72,5 +72,22 @@ namespace Octopanel_POC.Core.Octoprint
                 return null;
             }
         }
+
+        public async Task<ConnectionStatus> GetConnectionStatusAsync(CancellationToken cancellationToken)
+        {
+            var httpResponseMessage = await _httpClient.GetAsync(
+                new Uri("/api/connection", UriKind.Relative),
+                cancellationToken);
+            if (httpResponseMessage.IsSuccessStatusCode)
+            {
+                var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<ConnectionStatus>(responseString);
+                return result;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }
